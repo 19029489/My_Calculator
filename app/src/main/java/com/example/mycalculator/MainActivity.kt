@@ -196,6 +196,7 @@ class MainActivity : AppCompatActivity() {
             buttonAC.id -> {
                 firstNo = "0"
                 msg = "0"
+                sign = ""
             }
 
             buttonPlus.id -> {
@@ -230,34 +231,51 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            buttonNegPos.id -> {
+                if (!msg.equals("0") || !msg.equals("")) {
+                    if (msg.toDouble() > 0) {
+                        msg = "-" + msg
+                    } else {
+                        msg = msg.substring(1);
+                    }
+                }
+            }
+
+            buttonPercent.id -> {
+                if (!msg.equals("0") || !msg.equals("")) {
+                    msg = (msg.toDouble() / 100).toString()
+
+                    val value = msg.split(".")
+
+                    if (value.get(1).toInt() == 0) {
+                        msg = msg.toInt().toString()
+                    }
+                }
+            }
+
             buttonEqual.id -> {
 
                 if (!sign.equals("")){
-                    if (firstNo.contains(".") || secondNo.contains(".")) {
-                        if (!firstNo.equals("") && !secondNo.equals("")) {
-                            if (sign.equals("+")) {
-                                msg = (firstNo.toDouble() + secondNo.toDouble()).toString()
-                            } else if (sign.equals("-")) {
-                                msg = (firstNo.toDouble() - secondNo.toDouble()).toString()
-                            } else if (sign.equals("*")) {
-                                msg = (firstNo.toDouble() * secondNo.toDouble()).toString()
-                            } else {
-                                msg = (firstNo.toDouble() / secondNo.toDouble()).toString()
-                            }
+
+                    if (!firstNo.equals("") && !secondNo.equals("")) {
+
+                        if (sign.equals("+")) {
+                            msg = (firstNo.toDouble() + secondNo.toDouble()).toString()
+                        } else if (sign.equals("-")) {
+                            msg = (firstNo.toDouble() - secondNo.toDouble()).toString()
+                        } else if (sign.equals("*")) {
+                            msg = (firstNo.toDouble() * secondNo.toDouble()).toString()
+                        } else {
+                            msg = (firstNo.toDouble() / secondNo.toDouble()).toString()
                         }
-                    } else {
-                        if (!firstNo.equals("") && !secondNo.equals("")) {
-                            if (sign.equals("+")) {
-                                msg = (firstNo.toInt() + secondNo.toInt()).toString()
-                            } else if (sign.equals("-")) {
-                                msg = (firstNo.toInt() - secondNo.toInt()).toString()
-                            } else if (sign.equals("*")) {
-                                msg = (firstNo.toInt() * secondNo.toInt()).toString()
-                            } else {
-                                msg = (firstNo.toInt() / secondNo.toInt()).toString()
-                            }
+
+                        val value = msg.split(".")
+
+                        if (value.get(1).toInt() == 0) {
+                            msg = msg.toInt().toString()
                         }
                     }
+
 
                     secondNo = ""
                     sign = ""
