@@ -234,7 +234,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (!sign.equals("")){
                     if (firstNo.contains(".") || secondNo.contains(".")) {
-                        if (!firstNo.equals("")) {
+                        if (!firstNo.equals("") && !secondNo.equals("")) {
                             if (sign.equals("+")) {
                                 msg = (firstNo.toDouble() + secondNo.toDouble()).toString()
                             } else if (sign.equals("-")) {
@@ -246,7 +246,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     } else {
-                        if (!firstNo.equals("")) {
+                        if (!firstNo.equals("") && !secondNo.equals("")) {
                             if (sign.equals("+")) {
                                 msg = (firstNo.toInt() + secondNo.toInt()).toString()
                             } else if (sign.equals("-")) {
@@ -254,7 +254,6 @@ class MainActivity : AppCompatActivity() {
                             } else if (sign.equals("*")) {
                                 msg = (firstNo.toInt() * secondNo.toInt()).toString()
                             } else {
-                                val a = firstNo.toInt()
                                 msg = (firstNo.toInt() / secondNo.toInt()).toString()
                             }
                         }
